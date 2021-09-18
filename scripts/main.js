@@ -10,6 +10,7 @@ function setDetails(imageUrl, titleText) {
   'use strict';
   var detailImage = document.querySelector(DETAIL_IMAGE_SELECTOR);
   detailImage.setAttribute('src', imageUrl);
+
   var detailTitle = document.querySelector(DETAIL_TITLE_SELECTOR);
   detailTitle.textContent = titleText;
 }
@@ -80,22 +81,18 @@ function initializeEvents() {
 
 initializeEvents();
 
-var slider_img = document.querySelector('.slider-img');
-var images = ['otter1.jpg','otter2.jpg','otter3.jpg','otter4.jpg','otter5.jpg','flexbox froggy.png','grid garden.png']
 var i = 0;
 
 function prev(){
-    if(i <= 0) i = images.length;
+    if(i <= 0) i = thumbnailArray.length;
     i--;
-    return setImg();
+    getThumbnailsArray();
+    setDetailsFromThumb(thumbnail);
 }
 
 function next(){
-    if(i >=images.length-1) i = -1;
+    if(i >=thumbnailArray.length-1) i = -1;
     i++;
-    return setImg()
-}
-
-function setImg(){
-    return slider_img.setAttribute('src', 'img/'+images[i]);
+    getThumbnailsArray();
+    setDetailsFromThumb(thumbnail);
 }
